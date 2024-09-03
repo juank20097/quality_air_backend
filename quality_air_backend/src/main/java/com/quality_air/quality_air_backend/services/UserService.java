@@ -31,11 +31,9 @@ public class UserService {
 		return userrepo.findById(id);
 	}
 	
-	public String login(String correo, String password) {
-	    System.out.println("Buscando usuario con correo: " + correo + " y contraseña: " + password);
-	    Optional<User> user = userrepo.findByCorreoAndPassword(correo, password);
-	    System.out.println("Resultado de búsqueda: " + user);
-	    return user.isPresent() ? "ok" : "incorrecto";
+	public String login(String email, String password) {
+	    Optional<User> user = userrepo.findByEmailAndPassword(email, password);
+	    return user.isPresent() ? "validPassword" : "invalidPassword";
 	}
 
 

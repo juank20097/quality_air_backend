@@ -30,18 +30,18 @@ public class User implements Serializable {
 	@Column(name = "last_name")
 	private String lastName;
 
-	private String cedula;
+	private String dni;
 
 	@Temporal(TemporalType.DATE)
-	@Column(name = "fecha_nacimiento")
-	private Date fechaNacimiento;
+	private Date date;
 
-	private String correo;
+	private String email;
 
 	private String password;
 
 	private boolean status;
 
+	// Getters y Setters
 	public Integer getId() {
 		return id;
 	}
@@ -66,28 +66,28 @@ public class User implements Serializable {
 		this.lastName = lastName;
 	}
 
-	public String getCedula() {
-		return cedula;
+	public String getDni() {
+		return dni;
 	}
 
-	public void setCedula(String cedula) {
-		this.cedula = cedula;
+	public void setDni(String dni) {
+		this.dni = dni;
 	}
 
-	public Date getFechaNacimiento() {
-		return fechaNacimiento;
+	public Date getDate() {
+		return date;
 	}
 
-	public void setFechaNacimiento(Date fechaNacimiento) {
-		this.fechaNacimiento = fechaNacimiento;
+	public void setDate(Date date) {
+		this.date = date;
 	}
 
-	public String getCorreo() {
-		return correo;
+	public String getEmail() {
+		return email;
 	}
 
-	public void setCorreo(String correo) {
-		this.correo = correo;
+	public void setEmail(String email) {
+		this.email = email;
 	}
 
 	public String getPassword() {
@@ -104,12 +104,5 @@ public class User implements Serializable {
 
 	public void setStatus(boolean status) {
 		this.status = status;
-	}
-
-	@Override
-	public String toString() {
-		return "User [id=" + id + ", name=" + name + ", lastName=" + lastName + ", cedula=" + cedula
-				+ ", fechaNacimiento=" + fechaNacimiento + ", correo=" + correo + ", password=" + password + ", status="
-				+ status + "]";
 	}
 }

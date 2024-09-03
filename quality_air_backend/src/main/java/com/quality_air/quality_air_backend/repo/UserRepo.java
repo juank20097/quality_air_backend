@@ -15,7 +15,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 		@Query("select a from User a where a.status = true")
 		List<User> findByStatus();
 		
-		@Query("SELECT u FROM User u WHERE u.correo = :correo AND u.password = :password")
-	    Optional<User> findByCorreoAndPassword(String correo, String password);
+		@Query("SELECT u FROM User u WHERE u.email = :email AND u.password = :password")
+	    Optional<User> findByEmailAndPassword(String email, String password);
 	
 	}

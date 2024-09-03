@@ -53,9 +53,8 @@ public class UserController {
 	
 	@CrossOrigin(origins = "*")
     @PostMapping("/login")
-    public String authenticate(@RequestParam("correo") String correo, @RequestParam("password") String password) {
-    	System.out.println("CORREO CONTROLER: "+correo+" PASSWORD CONTROLER"+password);
-    	return userservice.login(correo, password);
+    public String authenticate(@RequestParam("email") String email, @RequestParam("password") String password) {
+    	return userservice.login(email, password);
     }
 
 }
