@@ -26,32 +26,32 @@ public class UserController {
 	@Autowired
 	private UserService userservice;
 
-	//@CrossOrigin(origins = "http://localhost:4200")
+	@CrossOrigin(origins = "*")
 	@GetMapping
 	public List<User> getAll() {
 		return userservice.getAll();
 	}
 
-	//@CrossOrigin(origins = "http://localhost:4200")
+	@CrossOrigin(origins = "*")
 	@PostMapping
 	public User insert(@RequestBody User enter) {
 		return userservice.insert(enter);
 	}	
 
-	//@CrossOrigin(origins = "http://localhost:4200")
+	@CrossOrigin(origins = "*")
 	@PutMapping(path = { "/{id}" })
 	public User update(@RequestBody User enter, @PathVariable("id") int id) {
 		enter.setId(id);
 		return userservice.update(enter);
 	}
 
-	//@CrossOrigin(origins = "http://localhost:4200")
+	@CrossOrigin(origins = "*")
 	@GetMapping(path = { "/{id}" })
 	public Optional<User> getId(@PathVariable("id") int id) {
 		return userservice.getId(id);
 	}
 	
-	//@CrossOrigin(origins = "http://localhost:4200")
+	@CrossOrigin(origins = "*")
     @PostMapping("/login")
     public String authenticate(@RequestParam("correo") String correo, @RequestParam("password") String password) {
     	System.out.println("CORREO CONTROLER: "+correo+" PASSWORD CONTROLER"+password);
