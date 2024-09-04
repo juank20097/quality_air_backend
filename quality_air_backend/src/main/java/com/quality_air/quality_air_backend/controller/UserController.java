@@ -1,11 +1,14 @@
 package com.quality_air.quality_air_backend.controller;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 import javax.management.openmbean.OpenType;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -52,9 +55,13 @@ public class UserController {
 	}
 	
 	@CrossOrigin(origins = "*")
-    @PostMapping("/login")
-    public String authenticate(@RequestParam("email") String email, @RequestParam("password") String password) {
-    	return userservice.login(email, password);
-    }
+	@PostMapping("/login")
+	public ResponseEntity<Map<String, String>> authenticate(@RequestParam("identifier") String identifier, @RequestParam("password") String password) {
+	    Map<String, String> response = new HashMap<>();
+	    String result = userservice.login(identifier, password);
+	    response.put("status", result);
+	    return ResponseEntity.ok(response);
+	}
+
 
 }

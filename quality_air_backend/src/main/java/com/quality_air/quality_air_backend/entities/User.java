@@ -25,20 +25,29 @@ public class User implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 
+	@Column(name= "name")
 	private String name;
 
 	@Column(name = "last_name")
 	private String lastName;
 
+	@Column(name = "dni", nullable = false)
 	private String dni;
 
 	@Temporal(TemporalType.DATE)
+	@Column(name= "date")
 	private Date date;
 
+	@Column(name= "email", nullable = false)
 	private String email;
 
+	@Column(name= "nick_name", nullable = false)
+	private String nickName;
+
+	@Column(name= "password", nullable = false)
 	private String password;
 
+	@Column(name= "status", nullable = false)
 	private boolean status;
 
 	// Getters y Setters
@@ -88,6 +97,14 @@ public class User implements Serializable {
 
 	public void setEmail(String email) {
 		this.email = email;
+	}
+
+	public String getNickName() {
+		return nickName;
+	}
+
+	public void setNickName(String nickName) {
+		this.nickName = nickName;
 	}
 
 	public String getPassword() {
