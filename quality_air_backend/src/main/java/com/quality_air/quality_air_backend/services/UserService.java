@@ -9,8 +9,10 @@ import org.springframework.stereotype.Service;
 import com.quality_air.quality_air_backend.entities.User;
 import com.quality_air.quality_air_backend.repo.UserRepo;
 
+import io.swagger.v3.oas.annotations.Hidden;
 import jakarta.annotation.PostConstruct;
 
+@Hidden
 @Service
 public class UserService {
 

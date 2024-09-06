@@ -9,7 +9,10 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 	
 	import com.quality_air.quality_air_backend.entities.User;
+
+import io.swagger.v3.oas.annotations.Hidden;
 	
+	@Hidden
 	@Repository
 	public interface UserRepo extends JpaRepository<User, Integer> {
 		

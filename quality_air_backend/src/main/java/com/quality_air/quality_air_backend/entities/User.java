@@ -3,6 +3,8 @@ package com.quality_air.quality_air_backend.entities;
 import java.io.Serializable;
 import java.sql.Date;
 
+import io.swagger.v3.oas.annotations.Hidden;
+import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -14,13 +16,14 @@ import jakarta.persistence.TemporalType;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+@Schema
 @Entity
 @Table(name = "user")
 @Data
 @NoArgsConstructor
 public class User implements Serializable {
 	private static final long serialVersionUID = 1L;
-
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
