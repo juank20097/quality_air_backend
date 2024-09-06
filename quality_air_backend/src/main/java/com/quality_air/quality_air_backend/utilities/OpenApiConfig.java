@@ -13,14 +13,23 @@ public class OpenApiConfig {
 	
 	@Value("${name.api}")
 	private String nameApi;
+	
+	@Value("${description.api}")
+	private String descriptionApi;
+	
+	@Value("${dev.team.url.api}")
+	private String devTeamUrl;
+	
+	@Value("${repo.url.api}")
+	private String repoUrl;
 
 	@Bean
 	public OpenAPI customOpenAPI() {
 		return new OpenAPI()
 				.info(new Info().title(this.nameApi).version("1.0")
-						.description("Documentación de la API para el proyecto Quality Air")
-						.contact(new Contact().name("Equipo de Desarrollo").url("https://github.com/juank20097")))
-				.externalDocs(new ExternalDocumentation().description("Repositorio de GitHub")
-						.url("https://github.com/juank20097/quality_air_backend/tree/proj_backend"));
+						.description(descriptionApi)
+						.contact(new Contact().name("Development Team").url(devTeamUrl)))
+				.externalDocs(new ExternalDocumentation().description("GitHub repository")
+						.url("repoUrl"));
 	}
 }
