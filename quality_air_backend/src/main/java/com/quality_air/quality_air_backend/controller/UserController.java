@@ -80,7 +80,7 @@ public class UserController {
 	@Operation(description = "This service allows you to log in using an ID and password.	", parameters = {
 			@Parameter(name = "identifier", description = "Identifier: email or nickName", schema = @Schema()),
 			@Parameter(name = "password", description = "Password", required = true, schema = @Schema()) }, responses = {
-					@ApiResponse(responseCode = "200", description = "Successful login", content = @Content(mediaType = "application/json", schema = @Schema(type = "object", name = "status", example = "validPassword"))),
+					@ApiResponse(responseCode = "200", description = "OK", content = @Content(mediaType = "application/json", schema = @Schema(type = "object", name = "status", example = "validPassword"))),
 					@ApiResponse(responseCode = "400", description = "Bad request", content = @Content()),
 					@ApiResponse(responseCode = "500", description = "Internal Server Error", content = @Content()) })
 	@CrossOrigin(origins = "*")
