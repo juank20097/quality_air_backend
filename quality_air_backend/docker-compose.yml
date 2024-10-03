@@ -12,26 +12,48 @@ services:
     volumes:
       - dbdata:/var/lib/mysql
       - ./src/main/resources/init.sql:/docker-entrypoint-initdb.d/init.sql
-      
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "--silent"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+
   phpmyadmin:
     image: phpmyadmin
     container_name: pma
     depends_on:
       - db
     environment:
-      PMA_HOST: db	
+      PMA_HOST: db
       PMA_PORT: 3306
       PMA_ARBITRARY: 1
     restart: always
     ports:
-      - "8092:80"
+      - "80:80"
+
+  air-quality-back-test:
+    build:
+      context: .
+      dockerfile: Dockerfile_test
+    container_name: air-quality-back-test
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://db:3306/air_quality_test
+      SPRING_DATASOURCE_USERNAME: root
+      SPRING_DATASOURCE_PASSWORD: root
+    depends_on:
+      db:
+        condition: service_healthy
+    volumes:
+      - ./logs:/app/logs
+    command: mvn verify > /app/logs/test-log 2>&1 
 
   air-quality-back:
     build:
-      context: .  
+      context: .
     container_name: air-quality-back
     depends_on:
-      - db
+      db:
+        condition: service_healthy
     restart: always
     ports:
       - "8080:8080"

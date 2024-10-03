@@ -12,47 +12,85 @@ import com.quality_air.quality_air_backend.repo.UserRepo;
 import io.swagger.v3.oas.annotations.Hidden;
 import jakarta.annotation.PostConstruct;
 
+/**
+ * Service class for managing User entities.
+ * 
+ * This class provides methods to perform operations on User entities, 
+ * including inserting, updating, retrieving, and logging in users.
+ */
 @Hidden
 @Service
 public class UserService {
 
-	@Autowired
-	private UserRepo userrepo;
+    @Autowired
+    private UserRepo userrepo;
 
-	@PostConstruct
-	public void insertarDatos() {
-		User adminUser = new User();
+    /**
+     * Initializes default data by inserting an admin user into the database.
+     */
+    @PostConstruct
+    public void insertarDatos() {
+        User adminUser = new User();
 
-		adminUser.setName("Admin");
-		adminUser.setLastName("Admin");
-		adminUser.setDni("12345678");
-		adminUser.setEmail("admin@correo.com");
-		adminUser.setNickName("admin");
-		adminUser.setPassword("admin");
-		adminUser.setStatus(true);
+        adminUser.setName("Admin");
+        adminUser.setLastName("Admin");
+        adminUser.setDni("12345678");
+        adminUser.setEmail("admin@correo.com");
+        adminUser.setNickName("admin");
+        adminUser.setPassword("admin");
+        adminUser.setStatus(true);
 
-		userrepo.save(adminUser);
-	}
+        userrepo.save(adminUser);
+    }
 
-	public User insert(User enter) {
-		return userrepo.save(enter);
-	}
+    /**
+     * Inserts a new user into the database.
+     * 
+     * @param enter the User entity to be inserted.
+     * @return the saved User entity.
+     */
+    public User insert(User enter) {
+        return userrepo.save(enter);
+    }
 
-	public User update(User enter) {
-		return userrepo.save(enter);
-	}
+    /**
+     * Updates an existing user in the database.
+     * 
+     * @param enter the User entity to be updated.
+     * @return the updated User entity.
+     */
+    public User update(User enter) {
+        return userrepo.save(enter);
+    }
 
-	public List<User> getAll() {
-		return userrepo.findByStatus();
-	}
+    /**
+     * Retrieves a list of all active users.
+     * 
+     * @return a list of users with active status.
+     */
+    public List<User> getAll() {
+        return userrepo.findByStatus();
+    }
 
-	public Optional<User> getId(int id) {
-		return userrepo.findById(id);
-	}
+    /**
+     * Retrieves a user by their ID.
+     * 
+     * @param id the ID of the user to be retrieved.
+     * @return an Optional containing the user if found, otherwise empty.
+     */
+    public Optional<User> getId(int id) {
+        return userrepo.findById(id);
+    }
 
-	public String login(String identifier, String password) {
-		Optional<User> user = userrepo.findByIdentifierAndPassword(identifier, password);
-		return user.isPresent() ? "validPassword" : "invalidPassword";
-	}
-
+    /**
+     * Validates user login credentials.
+     * 
+     * @param identifier the email or nickname of the user.
+     * @param password   the password of the user.
+     * @return a string indicating whether the credentials are valid or not.
+     */
+    public String login(String identifier, String password) {
+        Optional<User> user = userrepo.findByIdentifierAndPassword(identifier, password);
+        return user.isPresent() ? "validPassword" : "invalidPassword";
+    }
 }

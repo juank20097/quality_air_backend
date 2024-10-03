@@ -1,0 +1,6 @@
+com.quality_air.quality_air_backend
+com.quality_air.quality_air_backend.controller
+com.quality_air.quality_air_backend.entities
+com.quality_air.quality_air_backend.repo
+com.quality_air.quality_air_backend.services
+com.quality_air.quality_air_backend.utilities
