@@ -1,0 +1,1 @@
+packageSearchIndex = [{"l":"All Packages","u":"allpackages-index.html"},{"l":"com.quality_air.quality_air_backend.controller"},{"l":"com.quality_air.quality_air_backend.entities"},{"l":"com.quality_air.quality_air_backend.repo"},{"l":"com.quality_air.quality_air_backend.services"},{"l":"com.quality_air.quality_air_backend.utilities"}];updateSearchResults();

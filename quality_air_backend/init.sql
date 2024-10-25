@@ -1,0 +1,2 @@
+CREATE DATABASE IF NOT EXISTS air_quality;
+CREATE DATABASE IF NOT EXISTS air_quality_test;
