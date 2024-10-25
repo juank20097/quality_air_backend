@@ -11,7 +11,7 @@ services:
       - "3306:3306"
     volumes:
       - dbdata:/var/lib/mysql
-      - ./src/main/resources/init.sql:/docker-entrypoint-initdb.d/init.sql
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
     healthcheck:
       test: ["CMD", "mysqladmin", "ping", "--silent"]
       interval: 30s
@@ -29,7 +29,7 @@ services:
       PMA_ARBITRARY: ${PMA_ARBITRARY}
     restart: always
     ports:
-      - "80:80"
+      - "5050:80"
 
   air-quality-back-test:
     build:
