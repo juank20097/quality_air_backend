@@ -45,7 +45,7 @@ services:
         condition: service_healthy
     volumes:
       - ./logs:/app/logs
-    command: mvn verify > /app/logs/test-log 2>&1 
+    command: /bin/sh -c "mvn verify > /app/logs/test-log 2>&1"
 
   air-quality-back:
     build:
