@@ -1,7 +1,8 @@
 package com.quality_air.quality_air_backend.entities;
 
 import java.io.Serializable;
-import java.sql.Date;
+import java.util.Date;
+import java.text.SimpleDateFormat;
 
 import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.persistence.Column;
@@ -58,7 +59,7 @@ public class User implements Serializable {
      * Date of birth of the user.
      */
     @Temporal(TemporalType.DATE)
-    @Column(name = "date")
+    @Column(name = "date", nullable = false)
     private Date date;
 
     /**
@@ -102,17 +103,25 @@ public class User implements Serializable {
      * @param lastName Last name of the user.
      * @param dni      Identity number of the user.
      * @param email    Email address of the user.
+     * @param date     birthdate
      * @param nickName Nickname of the user.
      * @param password Password of the user.
      * @param status   Status of the user.
      */
-    public User(String name, String lastName, String dni, String email, String nickName, String password,
+    public User(String name, String lastName, String dni, String dateStr, String email, String nickName, String password,
             boolean status) {
         super();
         this.name = name;
         this.lastName = lastName;
         this.dni = dni;
         this.email = email;
+                try {
+            SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+            this.date = (Date) formatter.parse(dateStr);
+        } catch (Exception e) {
+            e.printStackTrace();
+            this.date = null; 
+        }
         this.nickName = nickName;
         this.password = password;
         this.status = status;

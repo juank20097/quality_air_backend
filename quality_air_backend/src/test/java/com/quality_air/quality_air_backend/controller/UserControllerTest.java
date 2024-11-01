@@ -54,8 +54,8 @@ public class UserControllerTest {
         System.out.println("-------------------------------------------------");
         System.out.println("UNIT TEST: Running testGetAllUsers...");
 
-        User user1 = new User("Juan", "Pérez", "12345678A", "juan@example.com", "juanp", "password123", true);
-        User user2 = new User("Ana", "Lopez", "98765432B", "ana@example.com", "anal", "password456", true);
+        User user1 = new User("Juan", "Pérez", "12345678A", "28/10/2012","juan@example.com", "juanp", "password123", true);
+        User user2 = new User("Ana", "Lopez", "98765432B", "28/10/2012", "ana@example.com","ana", "password456", true);
 
         when(userService.getAll()).thenReturn(Arrays.asList(user1, user2));
 
@@ -80,7 +80,7 @@ public class UserControllerTest {
         System.out.println("-------------------------------------------------");
         System.out.println("UNIT TEST: Running testCreateUser...");
 
-        User newUser = new User("Carlos", "Sanchez", "11223344C", "carlos@example.com", "carls", "password789", true);
+        User newUser = new User("Carlos", "Sanchez", "11223344C","28/10/2012", "carlos@example.com", "carls", "password789", true);
 
         when(userService.insert(newUser)).thenReturn(newUser);
 
@@ -139,7 +139,7 @@ public class UserControllerTest {
         System.out.println("-------------------------------------------------");
         System.out.println("UNIT TEST: Running testGetUserById...");
 
-        User user = new User("Juan", "Pérez", "12345678A", "juan@example.com", "juanp", "password123", true);
+        User user = new User("Juan", "Pérez", "12345678A","28/10/2012", "juan@example.com", "juanp", "password123", true);
 
         when(userService.getId(1)).thenReturn(Optional.of(user));
 

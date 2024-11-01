@@ -1,5 +1,8 @@
 package com.quality_air.quality_air_backend.services;
 
+import java.util.Date;
+import java.text.SimpleDateFormat;
+
 import java.util.List;
 import java.util.Optional;
 
@@ -36,6 +39,15 @@ public class UserService {
         adminUser.setLastName("Admin");
         adminUser.setDni("12345678");
         adminUser.setEmail("admin@correo.com");
+        try {
+            // Usa java.util.Date
+            SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+            Date parsedDate = formatter.parse("28/10/2012");
+            // Convierte a java.sql.Date si es necesario
+            adminUser.setDate(new java.sql.Date(parsedDate.getTime())); 
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         adminUser.setNickName("admin");
         adminUser.setPassword("admin");
         adminUser.setStatus(true);
