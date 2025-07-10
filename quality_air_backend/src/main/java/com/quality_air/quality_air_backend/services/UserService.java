@@ -1,6 +1,8 @@
 package com.quality_air.quality_air_backend.services;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,7 +12,6 @@ import com.quality_air.quality_air_backend.entities.User;
 import com.quality_air.quality_air_backend.repo.UserRepo;
 
 import io.swagger.v3.oas.annotations.Hidden;
-import jakarta.annotation.PostConstruct;
 
 /**
  * Service class for managing User entities.
@@ -24,24 +25,6 @@ public class UserService {
 
     @Autowired
     private UserRepo userrepo;
-
-    /**
-     * Initializes default data by inserting an admin user into the database.
-     */
-    @PostConstruct
-    public void insertarDatos() {
-        User adminUser = new User();
-
-        adminUser.setName("Admin");
-        adminUser.setLastName("Admin");
-        adminUser.setDni("12345678");
-        adminUser.setEmail("admin@correo.com");
-        adminUser.setNickName("admin");
-        adminUser.setPassword("admin");
-        adminUser.setStatus(true);
-
-        userrepo.save(adminUser);
-    }
 
     /**
      * Inserts a new user into the database.
@@ -87,10 +70,19 @@ public class UserService {
      * 
      * @param identifier the email or nickname of the user.
      * @param password   the password of the user.
-     * @return a string indicating whether the credentials are valid or not.
+     * @return a map indicating the login result and user status if valid.
      */
-    public String login(String identifier, String password) {
+    public Map<String, String> login(String identifier, String password) {
         Optional<User> user = userrepo.findByIdentifierAndPassword(identifier, password);
-        return user.isPresent() ? "validPassword" : "invalidPassword";
+
+        Map<String, String> result = new HashMap<>();
+        if (user.isPresent()) {
+            result.put("rol", user.get().getRol().getRol()); // Asegúrate que getEstado() exista
+            result.put("result", "validPassword");
+        } else {
+            result.put("result", "invalidPassword");
+        }
+
+        return result;
     }
 }

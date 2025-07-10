@@ -1,6 +1,5 @@
 package com.quality_air.quality_air_backend.controller;
 
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -113,19 +112,44 @@ public class UserController {
      * @param password   the password of the user.
      * @return a ResponseEntity containing the authentication status.
      */
-    @Operation(description = "This service allows you to log in using an ID and password.", parameters = {
-            @Parameter(name = "identifier", description = "Identifier: email or nickName", schema = @Schema()),
-            @Parameter(name = "password", description = "Password", required = true, schema = @Schema()) }, responses = {
-            @ApiResponse(responseCode = "200", description = "OK", content = @Content(mediaType = "application/json", schema = @Schema(example = "{\"status\": \"validPassword\"}"))),
-            @ApiResponse(responseCode = "400", description = "Bad request", content = @Content()),
-            @ApiResponse(responseCode = "500", description = "Internal Server Error", content = @Content()) })
+    @Operation(
+    	    summary = "User Login",
+    	    description = "Este servicio permite iniciar sesión usando un identificador (correo o alias) y contraseña.",
+    	    parameters = {
+    	        @Parameter(name = "identifier", description = "Correo o alias del usuario", required = true, schema = @Schema(type = "string")),
+    	        @Parameter(name = "password", description = "Contraseña del usuario", required = true, schema = @Schema(type = "string"))
+    	    },
+    	    responses = {
+    	        @ApiResponse(
+    	            responseCode = "200",
+    	            description = "Credenciales válidas",
+    	            content = @Content(
+    	                mediaType = "application/json",
+    	                schema = @Schema(
+    	                    example = "{\"status\": \"validPassword\", \"role\": \"ADMIN\"}"
+    	                )
+    	            )
+    	        ),
+    	        @ApiResponse(
+    	            responseCode = "200",
+    	            description = "Credenciales inválidas",
+    	            content = @Content(
+    	                mediaType = "application/json",
+    	                schema = @Schema(
+    	                    example = "{\"status\": \"invalidPassword\"}"
+    	                )
+    	            )
+    	        ),
+    	        @ApiResponse(responseCode = "400", description = "Solicitud incorrecta", content = @Content()),
+    	        @ApiResponse(responseCode = "500", description = "Error interno del servidor", content = @Content())
+    	    }
+    	)
+
     @CrossOrigin(origins = "*")
     @PostMapping("/login")
     public ResponseEntity<Map<String, String>> authenticate(@RequestParam("identifier") String identifier,
             @RequestParam("password") String password) {
-        Map<String, String> response = new HashMap<>();
-        String result = userservice.login(identifier, password);
-        response.put("status", result);
+    	Map<String, String> response = userservice.login(identifier, password);
         return ResponseEntity.ok(response);
     }
 }

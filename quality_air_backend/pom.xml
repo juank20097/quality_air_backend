@@ -14,7 +14,7 @@
 
 	<groupId>com.quality_air</groupId>
 	<artifactId>quality_air_backend</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>1.0.0</version>
 	<name>quality_air_backend</name>
 	<description>Backend proyecto</description>
 
