@@ -22,7 +22,7 @@ public class QualityAirBackendApplication {
         
         // Show the SWAGGER documentation url in the console
         System.out.println("---------- SWAGGER Documentation ------------");
-        System.out.println("http://[ip_server]:8080/swagger-ui/index.html");
+        System.out.println("http://localhost:8080/swagger-ui/index.html");
         System.out.println("---------------------------------------------");
     }
 }

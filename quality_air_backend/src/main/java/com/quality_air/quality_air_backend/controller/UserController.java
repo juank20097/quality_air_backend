@@ -61,7 +61,31 @@ public class UserController {
      * @param enter the User entity to be created.
      * @return the created User entity.
      */
-    @Operation(description = "This service allows you to create a user in the database.", requestBody = @io.swagger.v3.oas.annotations.parameters.RequestBody(description = "New user data", required = true, content = @Content(examples = @ExampleObject(summary = "Basic User", value = "{\"name\": \"Juan\", \"lastName\": \"Pérez\", \"dni\": \"12345678A\", \"date\": \"2024-09-06\", \"email\": \"juan@example.com\", \"nickName\": \"juanp\", \"password\": \"password123\", \"status\": true}"))))
+    @Operation(
+    	    description = "This service allows you to create a user in the database.",
+    	    requestBody = @io.swagger.v3.oas.annotations.parameters.RequestBody(
+    	        description = "New user data",
+    	        required = true,
+    	        content = @Content(
+    	            examples = @ExampleObject(
+    	                summary = "Basic User with Role",
+    	                value = "{\n" +
+    	                        "  \"name\": \"Juan\",\n" +
+    	                        "  \"lastName\": \"Pérez\",\n" +
+    	                        "  \"dni\": \"12345678A\",\n" +
+    	                        "  \"date\": \"2024-09-06\",\n" +
+    	                        "  \"email\": \"juan@example.com\",\n" +
+    	                        "  \"nickName\": \"juanp\",\n" +
+    	                        "  \"password\": \"password123\",\n" +
+    	                        "  \"status\": true,\n" +
+    	                        "  \"rol\": {\n" +
+    	                        "    \"id_rol\": 1\n" +
+    	                        "  }\n" +
+    	                        "}"
+    	            )
+    	        )
+    	    )
+    	)
     @CrossOrigin(origins = "*")
     @PostMapping
     public User insert(@RequestBody User enter) {
